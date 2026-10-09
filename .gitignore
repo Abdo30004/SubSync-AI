@@ -1,0 +1,32 @@
+# Node
+node_modules/
+dist/
+.DS_Store
+
+# Go
+/services/go-worker/server
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+venv/
+env/
+
+# Data and Videos
+/shared_data/*
+!/shared_data/.gitkeep
+*.mp4
+*.mkv
+*.wav
+*.srt
+
+# Exclude the test videos/srts we just uploaded but keep the directory
