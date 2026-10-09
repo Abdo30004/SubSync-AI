@@ -1,0 +1,23 @@
+syntax = "proto3";
+package subtitle_sync;
+
+option go_package = "github.com/subtitle-sync/go-worker/internal/pb/syncpb";
+
+service SyncService {
+  rpc SyncSubtitles (SyncRequest) returns (stream SyncChunk) {}
+}
+
+message SyncRequest {
+  string job_id = 1;
+  string movie_file_path = 2; 
+  string original_srt_path = 3; 
+  string language = 4;
+}
+
+message SyncChunk {
+  bool success = 1;
+  int32 chunk_index = 2;
+  bool is_final = 3;
+  string srt_content = 4; 
+  string error_message = 5;
+}

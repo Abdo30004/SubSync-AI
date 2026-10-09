@@ -1,0 +1,4 @@
+grpcio>=1.60.0
+grpcio-tools>=1.60.0
+argostranslate>=1.9.0
+openai-whisper
