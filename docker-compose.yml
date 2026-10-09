@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  nest-api:
+    build:
+      context: .
+      dockerfile: ./services/nest-api/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./shared_data:/app/shared_data
+    environment:
+      - GO_WORKER_URL=go-worker:50051
+    depends_on:
+      - go-worker
+
+  go-worker:
+    build:
+      context: .
+      dockerfile: ./services/go-worker/Dockerfile
+    ports:
+      - "50051:50051"
+    volumes:
+      - ./shared_data:/app/shared_data
+    environment:
+      - PYTHON_TRANSLATOR_URL=python-translator:50052
+    depends_on:
+      - python-translator
+
+  python-translator:
+    build:
+      context: .
+      dockerfile: ./services/python-translator/Dockerfile
+    ports:
+      - "50052:50052"
+    volumes:
+      - ./shared_data:/app/shared_data
